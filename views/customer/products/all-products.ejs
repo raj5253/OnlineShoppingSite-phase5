@@ -1,0 +1,21 @@
+<%- include('../../shared/includes/head', {pageTitle : 'Signup' }) %>
+<!-- <link rel="stylesheet" href="/styles/form.css"> -->
+<link rel="stylesheet" href="/styles/products.css">
+
+
+</head>
+
+<body>
+  <%- include('../../shared/includes/header.ejs') %>
+  <main>
+    <h1>All products</h1>
+    <!-- <p><%= locals.csrfToken %></p> -->
+    <ul id="products-grid">
+      <% for (const product  of products){ %>
+      <li>
+        <%- include('../../shared/includes/product-items.ejs', {product: product}) %>
+      </li>
+      <% } %>
+    </ul>
+  </main>
+  <%- include('../../shared/includes/footer.ejs') %>

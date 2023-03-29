@@ -1,0 +1,18 @@
+<%- include('../../shared/includes/head.ejs', {pageTitle : 'Update product' }) %>
+<link rel="stylesheet" href="/styles/form.css">
+<script src="/scripts/image-preview.js" defer></script>
+<!--ffrontend_js for image-preview-->
+
+
+</head>
+
+<body>
+  <%- include('../../shared/includes/header.ejs') %>
+  <main>
+    <h1>Update Product</h1>
+    <%- include('../includes/product-form.ejs' ,  {submitPath: '/admin/products/'  +  product.id , product: product , imageRequired: false}  ) %>
+  </main>
+  <%- include('../../shared/includes/footer.ejs') %>
+
+
+  <!-- product will be passed into this view-template so, product.id can be accesed -->

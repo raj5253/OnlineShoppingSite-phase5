@@ -1,0 +1,32 @@
+npm init -y
+npm install express
+npm install --save-dev nodemon
+
+In package.json add
+ "scripts": {
+    "start": "nodemon app.js"
+  },
+
+create app.js // your journey is in yours hand
+
+create the basic folder setup before writing the codes. organizing your code is the key for this project.
+    create sub folder in views
+    
+
+>> npm install mongodb
+
+>>npm install bcryptjs       << for pasword hashing
+
+>> npm install csurf         << for csrf token to prevent cross-site redirecting
+
+
+*********************** PHASE 2 ***************************
+
+>> npm install express-session  connect-mongodb-session        << for creatinng sessions and storign session to mongodb.
+
+
+**********************  PHASE 4 *****************************
+making  raghav@email.com as one of the amdin.
+amdin page creation.
+
+
