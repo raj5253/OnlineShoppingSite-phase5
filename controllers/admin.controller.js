@@ -1,6 +1,8 @@
 // for managing adminstation related pages.
 const Product = require("../models/product.model");
 const Order = require("../models/oders.model");
+const productImgUpload = require("../util/cloudimgupload");
+const getDataUri = require("../util/dataUri");
 
 async function getProducts(req, res) {
   try {
@@ -17,11 +19,20 @@ function getNewProduct(req, res) {
 }
 
 async function createNewProduct(req, res, next) {
-  // console.log(req.body);
-  // console.log(req.file);
+  console.log(req.body);
+  console.log(req.file);
+
+  const file = req.file; //multer
+  const fileUri = getDataUri(file); //DataUriParser  //a uri, which is only in scope of the memory, not the disk
+  const imgUploadData = await productImgUpload(
+    file.orginalname,
+    fileUri.content
+  );
+
   const product = new Product({
     ...req.body,
-    image: req.file.filename,
+    image: imgUploadData.public_id,
+    imageUrl: imgUploadData.secure_url,
   });
 
   try {
@@ -51,8 +62,14 @@ async function updateProduct(req, res, next) {
   });
 
   if (req.file) {
-    // replace the old image with the new one
-    product.replaceImage(req.file.filename);
+    const file = req.file; //multer
+    const fileUri = getDataUri(file); //DataUriParser
+    const imgUploadData = await productImgUpload(
+      file.orginalname,
+      fileUri.content
+    );
+    // replace the old image info with the new ones
+    product.replaceImage(imgUploadData.public_id, imgUploadData.secure_url);
   }
 
   try {

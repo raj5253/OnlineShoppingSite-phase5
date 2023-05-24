@@ -6,18 +6,22 @@
   "scripts": {
     "start": "nodemon app.js"
   },
+ 
   "keywords": [],
   "author": "raj5253",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.37.0",
     "connect-mongodb-session": "^3.1.1",
     "csurf": "^1.11.0",
+    "datauri": "^4.1.0",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "mongodb": "^5.0.0",
     "multer": "^1.4.5-lts.1",
+    "streamifier": "^0.1.1",
     "stripe": "^11.14.0",
     "uuid": "^9.0.0"
   },

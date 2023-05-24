@@ -8,9 +8,7 @@ class Product {
     this.price = +productData.price;
     this.description = productData.description;
     this.image = productData.image; //the name of the image file.
-    // this.imagePath = `product-data/images/${productData.image}`; //complete path where where image is stored -> backend
-    // this.imageUrl = `/products/assets/images/${productData.image}`; //image will be serverd to usre by this url -> frontend
-    this.updateImageData();
+    this.imageUrl = productData.imageUrl; //cloudinary secure_url
     if (productData._id) {
       this.id = productData._id.toString(); //used while rendering all products uniquely, findAll()
     }
@@ -23,6 +21,7 @@ class Product {
       price: this.price,
       description: this.description,
       image: this.image,
+      imageUrl: this.imageUrl,
     };
 
     if (this.id) {
@@ -31,7 +30,9 @@ class Product {
       if (!this.image) {
         //no new image uploaded, then prevent exsisting to be overwritten by undefined
         delete productData.image; //delete the keypair
+        delete productData.imageUrl;
       }
+
       await db
         .getDb()
         .collection("products")
@@ -73,14 +74,10 @@ class Product {
     return new Product(product); //you return a class
   }
 
-  async replaceImage(newImage) {
+  async replaceImage(newImage, newUrl) {
     this.image = newImage;
-    this.updateImageData();
-  }
-
-  updateImageData() {
-    this.imagePath = `product-data/images/${this.image}`; //complete path where where image is stored -> backend
-    this.imageUrl = `/products/assets/images/${this.image}`; //image will be serverd to usre by this url -> frontend
+    this.imageUrl = newUrl;
+    // this.updateImageData();
   }
 
   remove() {

@@ -2,7 +2,8 @@
 
 const express = require("express");
 const adminController = require("../controllers/admin.controller");
-const imageUploadMiddleware = require("../middlewares/image-upload");
+// const imageUploadMiddleware = require("../middlewares/image-upload-local");
+const imageUploadMiddleware = require("../middlewares/image-upload-cloud");
 
 const router = express.Router();
 

@@ -18,6 +18,7 @@ const cartRoutes = require("./routes/cart.routes");
 const ordersRoutes = require("./routes/orders.routes");
 const updateCartPrices = require("./middlewares/update-cart-prices");
 const notFoundMiddleware = require("./middlewares/not-found");
+const cloudianary = require("./config/cloudianary");
 const app = express();
 
 const sessionConfig = createSessionConfig();
@@ -25,12 +26,14 @@ const sessionConfig = createSessionConfig();
 app.set("view engine", "ejs"); //set veiw engine as ejs
 app.set("views", path.join(__dirname, "views")); //make contents of view folder aviable public. Now they can be accessed in rotuers->controllers
 
+app.use(cloudianary);
+
 app.use(express.static("public")); //make public folder accessible
 app.use("/products/assets", express.static("product-data"));
 app.use(express.urlencoded({ extended: false })); //send data from ejs-froms to backend
 app.use(express.json()); // for sending json data to backend, fetch in cart
 
-app.use(expressSession(sessionConfig)); //  created session after csrf and csrf is dependent on session
+app.use(expressSession(sessionConfig)); //  created session after csrf as csrf is dependent on session
 app.use(csrf());
 app.use(cartMiddleware); //creating the cart
 app.use(updateCartPrices);

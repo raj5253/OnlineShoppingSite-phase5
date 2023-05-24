@@ -30,3 +30,7 @@ making  raghav@email.com as one of the amdin.
 amdin page creation.
 
 
+
+
+>> the project is fully completed. till phase6. still image storing issues are there, so gonna use CloudinaryAPI.
+PHASE 7 begins.

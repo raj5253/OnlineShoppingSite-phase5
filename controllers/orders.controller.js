@@ -1,6 +1,4 @@
-const stripe = require("stripe")(
-  "sk_test_51MkkYdSDNqeO4XdQUSYhPwCyPSALcf1Ofv7nbB7PhWCffNC9DvRAtlO4Zte8AfnVIokK16kxZkVdo4ZQ5sWhrLYw00bYgEMbBE"
-); //don't share key. security
+const stripe = require("stripe")(process.env.STRIPE_KEY); //don't share key. security
 const Order = require("../models/oders.model");
 const User = require("../models/user.model");
 
@@ -52,8 +50,10 @@ async function addOrder(req, res, next) {
       };
     }),
     mode: "payment",
-    success_url: `http://localhost:3000/orders/success`,
-    cancel_url: `http://localhost:3000/orders/failure`,
+    success_url: `${RENDER_EXTERNAL_URL}/orders/success`,
+    cancel_url: `${RENDER_EXTERNAL_URL}/orders/failure`,
+    // success_url: `http://localhost:3000/orders/success`,
+    // cancel_url: `http://localhost:3000/orders/failure`,
   });
 
   res.redirect(303, session.url);
